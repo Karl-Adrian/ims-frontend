@@ -1,0 +1,42 @@
+<h2>Add an Item</h2>
+<form (ngSubmit)="addItem()">
+  <div class="form-group">
+    <label for="itemName">Item Name:</label>
+    <input type="text" id="itemName" name="itemName" [(ngModel)]="itemName" required>
+  </div>
+  <div class="form-group">
+    <label for="itemQuantity">Quantity:</label>
+    <input type="number" id="itemQuantity" name="itemQuantity" [(ngModel)]="itemQuantity" required>
+  </div>
+  <div class="form-group">
+    <label for="itemQuantity">Price:</label>
+    <input type="number" id="itemPrice" name="itemPrice" [(ngModel)]="itemPrice" required>
+  </div>
+  <button type="submit">Add Item</button>
+</form>
+
+<h2>Stored Items</h2>
+<table >
+  <thead>
+    <tr>
+      <th> Name</th>
+      <th> Quantity</th>
+      <th> Price</th>
+    </tr>
+  </thead>
+  <!-- TODO:ADD VALIDATION -->
+  <tbody *ngFor="let item of items">
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.price }}</td>
+      <button (click)="deleteItems(item.id)" >Delete</button>
+      <button (click)="editItems(item)" >Edit</button>
+
+    </tr>
+
+  </tbody>
+</table>
+
+
+
