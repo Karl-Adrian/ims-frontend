@@ -10,6 +10,7 @@ import { ItemFormComponent } from './item-form/item-form.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [    {path: 'item-form', title: 'item form',component:ItemFormComponent}
+//{path: '', redirectTo: '/item-form', pathMatch: 'full'},
 ]
 @NgModule({
   declarations: [

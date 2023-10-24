@@ -13,41 +13,41 @@ export class ItemFormComponent {
   itemName: string = '';
   itemQuantity: number = 0;
   itemPrice: number = 0;
-  items: Item[] = [];
+  items: InventoryItem[] = [];
    httpOptions = {
     headers: new HttpHeaders({
       'ngrok-skip-browser-warning':"true"
     })
   };
   edit: boolean=false;
-  itemBeingEdited!: Item;
+  itemBeingEdited!: InventoryItem;
 
   constructor(private http: HttpClient) {
     this.getItems()
    }
 
  addItem() {
-   const  url = `http://localhost:8080/items/`;   
+   const  url = `http://localhost:8080/api/inventory`;   
     if (this.itemName && this.itemQuantity) {
       if (this.edit) {
-        const newItem:Item = {
+        const newItem:InventoryItem = {
           name: this.itemName,
           quantity: this.itemQuantity,
           id: this.itemBeingEdited.id,
           price: this.itemPrice
         };
-        this.http.put<Item>(url,newItem, this.httpOptions).subscribe(value=>{
+        this.http.put<InventoryItem>(url,newItem, this.httpOptions).subscribe(value=>{
           this.getItems();
           this.edit=false;
         });   
       }else{
-        const newItem:Item = {
+        const newItem:InventoryItem = {
           name: this.itemName,
           quantity: this.itemQuantity,
           id: 0,
           price: this.itemPrice
         };
-        this.http.post<Item>(url,newItem, this.httpOptions).subscribe(value=>{
+        this.http.post<InventoryItem>(url,newItem, this.httpOptions).subscribe(value=>{
           this.getItems();
           this.edit=false;
         });                
@@ -56,13 +56,13 @@ export class ItemFormComponent {
   }
 
 getItems() {
-  const url = 'http://localhost:8080/items/';
-  this.http.get<Item[]>(url,this.httpOptions).subscribe(value=>{this.items=value 
+  const url = 'http://localhost:8080/items';
+  this.http.get<InventoryItem[]>(url,this.httpOptions).subscribe(value=>{this.items=value 
 });
   
 }
 
-editItems(item: Item) {
+editItems(item: InventoryItem) {
   this.itemBeingEdited=item
   this.edit=true;
   this.itemName=item.name
@@ -74,11 +74,11 @@ editItems(item: Item) {
 
 deleteItems(itemId:number) {
   const url = `http://localhost:8080/items/${itemId}`;
-  this.http.delete<Item>(url,this.httpOptions).subscribe(value=>{this.getItems()
+  this.http.delete<InventoryItem>(url,this.httpOptions).subscribe(value=>{this.getItems()
 });
   
 }
 
 }
 
-interface Item {id:number, name: string, price: number,quantity:number };
+interface InventoryItem {id:number, name: string, price: number,quantity:number };
