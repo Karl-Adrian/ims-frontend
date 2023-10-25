@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { UrlEndpoints } from 'src/environments';
+import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 
 
 @Component({
@@ -10,6 +12,7 @@ import { catchError, retry } from 'rxjs/operators';
   styleUrls: ['./item-form.component.css']
 })
 export class ItemFormComponent {
+  itemForm: FormGroup;
   itemName: string = '';
   itemQuantity: number = 0;
   itemPrice: number = 0;
@@ -22,13 +25,22 @@ export class ItemFormComponent {
   edit: boolean=false;
   itemBeingEdited!: InventoryItem;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private fb: FormBuilder) {
+    this.itemForm = this.fb.group({
+      itemName: ['', [Validators.required]],
+      itemQuantity: [null, [Validators.required, Validators.min(1), Validators.max(999999)]],
+      itemPrice: [null, [Validators.required, Validators.min(0.10), Validators.max(99999999)]]
+    })
     this.getItems()
    }
 
- addItem() {
-   const  url = `http://localhost:8080/api/inventory`;   
+
+ addItem() {  
     if (this.itemName && this.itemQuantity) {
+      const url=UrlEndpoints.endpointUrl.base+UrlEndpoints.endpointUrl.items
+      console.log(url);
+      
+
       if (this.edit) {
         const newItem:InventoryItem = {
           name: this.itemName,
@@ -36,7 +48,7 @@ export class ItemFormComponent {
           id: this.itemBeingEdited.id,
           price: this.itemPrice
         };
-        this.http.put<InventoryItem>(url,newItem, this.httpOptions).subscribe(value=>{
+        this.http.put<InventoryItem>(UrlEndpoints.endpointUrl.base,newItem, this.httpOptions).subscribe(value=>{
           this.getItems();
           this.edit=false;
         });   
@@ -47,7 +59,7 @@ export class ItemFormComponent {
           id: 0,
           price: this.itemPrice
         };
-        this.http.post<InventoryItem>(url,newItem, this.httpOptions).subscribe(value=>{
+        this.http.post<InventoryItem>(UrlEndpoints.endpointUrl.base,newItem, this.httpOptions).subscribe(value=>{
           this.getItems();
           this.edit=false;
         });                
@@ -56,8 +68,7 @@ export class ItemFormComponent {
   }
 
 getItems() {
-  const url = 'http://localhost:8080/items';
-  this.http.get<InventoryItem[]>(url,this.httpOptions).subscribe(value=>{this.items=value 
+  this.http.get<InventoryItem[]>(UrlEndpoints.endpointUrl.base,this.httpOptions).subscribe(value=>{this.items=value 
 });
   
 }
@@ -73,8 +84,8 @@ editItems(item: InventoryItem) {
 
 
 deleteItems(itemId:number) {
-  const url = `http://localhost:8080/items/${itemId}`;
-  this.http.delete<InventoryItem>(url,this.httpOptions).subscribe(value=>{this.getItems()
+  // const url = `http://localhost:8080/api/inventory${itemId}`;
+  this.http.delete<InventoryItem>(UrlEndpoints.endpointUrl.base+`${itemId}`,this.httpOptions).subscribe(value=>{this.getItems()
 });
   
 }
