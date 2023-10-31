@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { UrlEndpoints } from 'src/environments';
 import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { InventoryItem } from '../models/inventory-item';
 
 
 @Component({
@@ -18,9 +19,6 @@ export class ItemFormComponent {
   itemPrice: number = 0;
   items: InventoryItem[] = [];
    httpOptions = {
-    headers: new HttpHeaders({
-      'ngrok-skip-browser-warning':"true"
-    })
   };
   edit: boolean=false;
   itemBeingEdited!: InventoryItem;
@@ -29,7 +27,7 @@ export class ItemFormComponent {
     this.itemForm = this.fb.group({
       itemName: ['', [Validators.required]],
       itemQuantity: [null, [Validators.required, Validators.min(1), Validators.max(999999)]],
-      itemPrice: [null, [Validators.required, Validators.min(0.10), Validators.max(99999999)]]
+      itemPrice: [null, [Validators.required, Validators.min(1.00), Validators.max(99999999)]]
     })
     this.getItems()
    }
@@ -37,10 +35,6 @@ export class ItemFormComponent {
 
  addItem() {  
     if (this.itemName && this.itemQuantity) {
-      const url=UrlEndpoints.endpointUrl.base+UrlEndpoints.endpointUrl.items
-      console.log(url);
-      
-
       if (this.edit) {
         const newItem:InventoryItem = {
           name: this.itemName,
@@ -71,25 +65,25 @@ getItems() {
   this.http.get<InventoryItem[]>(UrlEndpoints.endpointUrl.base,this.httpOptions).subscribe(value=>{this.items=value 
 });
   
+
 }
 
 editItems(item: InventoryItem) {
   this.itemBeingEdited=item
   this.edit=true;
-  this.itemName=item.name
-  this.itemQuantity=item.quantity
-  this.itemPrice=item.price
+  this.itemForm.patchValue({
+    itemName:item.name,
+  itemQuantity:item.quantity,
+  itemPrice:item.price
+  });
   
 }
 
 
 deleteItems(itemId:number) {
-  // const url = `http://localhost:8080/api/inventory${itemId}`;
   this.http.delete<InventoryItem>(UrlEndpoints.endpointUrl.base+`${itemId}`,this.httpOptions).subscribe(value=>{this.getItems()
 });
   
 }
 
 }
-
-interface InventoryItem {id:number, name: string, price: number,quantity:number };
