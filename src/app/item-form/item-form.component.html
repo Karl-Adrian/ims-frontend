@@ -44,28 +44,32 @@
   </div>
   <button type="submit" [disabled]="!itemForm.valid">Add Item</button>
 </form>
+<br>
+<br>
+
  <!-- Stored Items Table -->
-<h2>Stored Items</h2>
-<table >
-  <thead>
-    <tr>
-      <th> Name</th>
-      <th> Quantity</th>
-      <th> Price</th>
-    </tr>
-  </thead>
-  <!-- TODO:ADD VALIDATION -->
-  <tbody *ngFor="let item of items">
-    <tr>
-      <td>{{ item.name }}</td>
-      <td>{{ item.quantity }}</td>
-      <td>{{ item.price }}</td>
-      <button (click)="deleteItems(item.id)" >Delete</button>
-      <button (click)="editItems(item)" >Edit</button>
-    </tr>
-  </tbody>
-</table>
 
-
+<div class="stored-items">
+  <h2>Stored Items</h2>
+  <table class="table1" >
+    <thead>
+      <tr>
+        <th> Name</th>
+        <th> Quantity</th>
+        <th> Price</th>
+      </tr>
+    </thead>
+    <!-- TODO:ADD VALIDATION -->
+    <tbody *ngFor="let item of items">
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }}</td>
+        <button (click)="deleteItems(item.id)" >Delete</button>
+        <button (click)="editItems(item)" >Edit</button>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
