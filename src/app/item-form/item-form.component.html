@@ -1,49 +1,69 @@
-<!-- Item Form -->
-<h2>Add an Item</h2>
-<form [formGroup]="itemForm" (ngSubmit)="addItem()">
-  <div class="form-group">
-    <label for="itemName">Item Name:</label>
-    <input type="text" id="itemName" name="itemName" formControlName="itemName">
+<!-- Navbar -->
+<nav class="navbar">
+  <div>
+    <a href="item-form.component.html">
+      <img src="images/technovationlogo-01.png">
+    </a>
   </div>
-  <div class="form-group">
-    <label for="itemQuantity">Quantity:</label>
-    <input type="number" id="itemQuantity" name="itemQuantity" formControlName="itemQuantity">
-    <div *ngIf="itemForm.get('itemQuantity')?.hasError('required')">Quantity is required.</div>
-    <div *ngIf="itemForm.get('itemQuantity')?.hasError('min')">Quantity must be at least 1.</div>
-    <div *ngIf="itemForm.get('itemQuantity')?.hasError('max')">Quantity must not exceed 100.</div>
-  </div>
-  <div class="form-group">
-    <label for="itemPrice">Price:</label>
-    <input type="number" id="itemPrice" name="itemPrice" formControlName="itemPrice">
-    <div *ngIf="itemForm.get('itemPrice')?.hasError('required')">Price is required.</div>
-    <div *ngIf="itemForm.get('itemPrice')?.hasError('min')">Price must be at least 1.00.</div>
-    <div *ngIf="itemForm.get('itemPrice')?.hasError('max')">Price must not exceed 1000.</div>
-  </div>
-  <button type="submit" [disabled]="!itemForm.valid">Add Item</button>
-</form>
+<ul class="nav">
+  <li>Home</li>
+</ul>
+</nav>
 
-<h2>Remove Item</h2>
-<form [formGroup]="itemForm" (ngSubmit)="addItem()">
-  <div class="form-group">
-    <label for="itemName">Item Name:</label>
-    <input type="text" id="itemName" name="itemName" formControlName="itemName">
-  </div>
-  <div class="form-group">
-    <label for="itemQuantity">Quantity:</label>
-    <input type="number" id="itemQuantity" name="itemQuantity" formControlName="itemQuantity">
-    <div *ngIf="itemForm.get('itemQuantity')?.hasError('required')">Quantity is required.</div>
-    <div *ngIf="itemForm.get('itemQuantity')?.hasError('min')">Quantity must be at least 1.</div>
-    <div *ngIf="itemForm.get('itemQuantity')?.hasError('max')">Quantity must not exceed 100.</div>
-  </div>
-  <div class="form-group">
-    <label for="itemPrice">Price:</label>
-    <input type="number" id="itemPrice" name="itemPrice" formControlName="itemPrice">
-    <div *ngIf="itemForm.get('itemPrice')?.hasError('required')">Price is required.</div>
-    <div *ngIf="itemForm.get('itemPrice')?.hasError('min')">Price must be at least 1.00.</div>
-    <div *ngIf="itemForm.get('itemPrice')?.hasError('max')">Price must not exceed 1000.</div>
-  </div>
-  <button type="submit" [disabled]="!itemForm.valid">Add Item</button>
-</form>
+
+
+
+<!--Add Item Form -->
+<div class="add-item">
+  <h2>Add an Item</h2>
+  <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+    <div class="form-group">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" name="itemName" formControlName="itemName">
+    </div>
+    <div class="form-group">
+      <label for="itemQuantity">Quantity:</label>
+      <input type="number" id="itemQuantity" name="itemQuantity" formControlName="itemQuantity">
+      <div *ngIf="itemForm.get('itemQuantity')?.hasError('required')">Quantity is required.</div>
+      <div *ngIf="itemForm.get('itemQuantity')?.hasError('min')">Quantity must be at least 1.</div>
+      <div *ngIf="itemForm.get('itemQuantity')?.hasError('max')">Quantity must not exceed 100.</div>
+    </div>
+    <div class="form-group">
+      <label for="itemPrice">Price:</label>
+      <input type="number" id="itemPrice" name="itemPrice" formControlName="itemPrice">
+      <div *ngIf="itemForm.get('itemPrice')?.hasError('required')">Price is required.</div>
+      <div *ngIf="itemForm.get('itemPrice')?.hasError('min')">Price must be at least 1.00.</div>
+      <div *ngIf="itemForm.get('itemPrice')?.hasError('max')">Price must not exceed 1000.</div>
+    </div>
+    <button type="submit" [disabled]="!itemForm.valid">Add Item</button>
+  </form>
+</div>
+
+<!-- Remove Item Form -->
+<div class="add-item">
+  <h2>Remove Item</h2>
+  <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+    <div class="form-group">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" name="itemName" formControlName="itemName">
+    </div>
+    <div class="form-group">
+      <label for="itemQuantity">Quantity:</label>
+      <input type="number" id="itemQuantity" name="itemQuantity" formControlName="itemQuantity">
+      <div *ngIf="itemForm.get('itemQuantity')?.hasError('required')">Quantity is required.</div>
+      <div *ngIf="itemForm.get('itemQuantity')?.hasError('min')">Quantity must be at least 1.</div>
+      <div *ngIf="itemForm.get('itemQuantity')?.hasError('max')">Quantity must not exceed 100.</div>
+    </div>
+    <div class="form-group">
+      <label for="itemPrice">Price:</label>
+      <input type="number" id="itemPrice" name="itemPrice" formControlName="itemPrice">
+      <div *ngIf="itemForm.get('itemPrice')?.hasError('required')">Price is required.</div>
+      <div *ngIf="itemForm.get('itemPrice')?.hasError('min')">Price must be at least 1.00.</div>
+      <div *ngIf="itemForm.get('itemPrice')?.hasError('max')">Price must not exceed 1000.</div>
+    </div>
+    <button type="submit" [disabled]="!itemForm.valid">Add Item</button>
+  </form>
+</div>
 <br>
 <br>
 
