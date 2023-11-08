@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { UrlEndpoints } from 'src/environments';
 import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { InventoryItem } from '../models/inventory-item';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -13,10 +14,9 @@ import { InventoryItem } from '../models/inventory-item';
   styleUrls: ['./item-form.component.css']
 })
 export class ItemFormComponent {
+  // dataSource: MatTableDataSource<Item> = new MatTableDataSource<Item>();
+  displayedColumns: string[] = ['index','name', 'quantity', 'price'];
   itemForm: FormGroup;
-  itemName: string = '';
-  itemQuantity: number = 0;
-  itemPrice: number = 0;
   items: InventoryItem[] = [];
    httpOptions = {
   };
@@ -34,31 +34,33 @@ export class ItemFormComponent {
 
 
  addItem() {  
-    if (this.itemName && this.itemQuantity) {
       if (this.edit) {
         const newItem:InventoryItem = {
-          name: this.itemName,
-          quantity: this.itemQuantity,
+          name: this.itemForm.get("itemName")!.value,
+          quantity: this.itemForm.get("itemQuantity")!.value,
           id: this.itemBeingEdited.id,
-          price: this.itemPrice
+          price: this.itemForm.get("itemPrice")!.value
         };
+        
         this.http.put<InventoryItem>(UrlEndpoints.endpointUrl.base,newItem, this.httpOptions).subscribe(value=>{
           this.getItems();
           this.edit=false;
-        });   
-      }else{
+        });
+      }
+      
+      else{
         const newItem:InventoryItem = {
-          name: this.itemName,
-          quantity: this.itemQuantity,
+          name: this.itemForm.get("itemName")!.value,
+          quantity: this.itemForm.get("itemQuantity")!.value,
           id: 0,
-          price: this.itemPrice
+          price: this.itemForm.get("itemPrice")!.value
         };
+        
         this.http.post<InventoryItem>(UrlEndpoints.endpointUrl.base,newItem, this.httpOptions).subscribe(value=>{
           this.getItems();
           this.edit=false;
         });                
       }
-  }
   }
 
 getItems() {
@@ -76,14 +78,22 @@ editItems(item: InventoryItem) {
   itemQuantity:item.quantity,
   itemPrice:item.price
   });
-  
 }
 
 
 deleteItems(itemId:number) {
   this.http.delete<InventoryItem>(UrlEndpoints.endpointUrl.base+`${itemId}`,this.httpOptions).subscribe(value=>{this.getItems()
 });
+
+}
+
+
+getErrorMessage(){
   
+}
+dataSource(){
+
 }
 
 }
+

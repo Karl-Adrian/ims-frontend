@@ -10,22 +10,21 @@
 
 
 /* Header */
-.landing h1 {
+/* .landing h1 {
     text-align: center;
     font-size: 60px;
     padding-top: 2em;
     color: #ffffff;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #003B77, 0 0 30px #003B77,
       0 0 40px #003B77, 0 0 55px #003B77, 0 0 70px #003B77;
-
 }
-
+ */
 
 
 
 
 /* button CSS */
-.btn {
+/* .btn {
   margin-left: 47%;  
   display: inline-block;
   padding: 0.8rem 3rem;
@@ -59,4 +58,4 @@
 
 .btn:hover {
   color: #fff;
-}
+} */

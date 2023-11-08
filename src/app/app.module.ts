@@ -9,7 +9,16 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { RouterModule, Routes } from '@angular/router';
-const routes: Routes = [    {path: 'item-form', title: 'item form',component:ItemFormComponent}
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import { LandingComponent } from './landing/landing.component';
+const routes: Routes = [  
+    {path: 'item-form', title: 'item form',component:ItemFormComponent},
+    {path: '', title: 'Home',component:LandingComponent}
 //{path: '', redirectTo: '/item-form', pathMatch: 'full'},
 ]
 @NgModule({
@@ -17,14 +26,21 @@ const routes: Routes = [    {path: 'item-form', title: 'item form',component:Ite
     AppComponent,
     ItemListComponent,
     ItemFormComponent,
-    ItemDetailComponent
+    ItemDetailComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule, 
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
