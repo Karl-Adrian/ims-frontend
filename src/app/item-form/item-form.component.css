@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Roboto:ital,wght@1,300&family=Tilt+Neon&display=swap');
 
 * {
-  font-family: "Monsterrat", cursive;
+  font-family: "Monsterrat", sans-serif;
 }
 
-/* navbar */
+/*navbar */
 .navbar {
   list-style-type: none;
   margin: 0;
@@ -14,156 +14,38 @@
 .nav {
   color: #fff;
 }
-
-
-/* item labels */
-.item-label {
-  font-size:20px;
+.nav-logo {
+width: 150px;
+height: auto;
 }
 
-/* Add Item */
 .add-item {
-  margin: 10px 70px 70px;
-  box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: 100vh;
+  border: 55px solid black;
+  border-radius: 6px;
+  border-width: 11px;
+  background: #003c7782;
 }
-
-.add-item h2 {
-  text-align: center;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgb(0, 0, 0);
-  padding: 30px 0;
-}
-
-.form-group {
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: normal;
-  border: none;
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 100%;
-  white-space: nowrap;
-  background-color: white;
+.add-item mat-card-title {
+  font-size:35px;
 }
 
 
 
-
-
-/* Stored Items*/
-.stored-items {
-  margin: 10px 70px 70px;
-    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
-}
-.stored-items h2 {
-  text-align: center;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgb(0, 0, 0);
-  padding: 30px 0;
+.remove-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  height: 100vh; 
+  border: 55px solid black;
+  border-radius: 6px;
+  border-width: 11px;
+  background: #003c7782;
 }
 
-.table1 {
-  border-radius: 5px;
-    font-size: 12px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: white;
-}
 
-.table1 td, .table1 th {
-  text-align: center;
-    padding: 8px;
-}
-
-.table1 td {
-  border-right: 1px solid #f8f8f8;
-  font-size: 12px;
-}
-
-.table1 thead th {
-  color: #ffffff;
-  background: #003B77;
-}
-
-.table1 thead th:nth-child(odd) {
-  color: #ffffff;
-    background: #0067FC;
-}
-
-.table1 tr:nth-child(even) {
-  background: #F8F8F8;
-}
-
-/* Responsive Rules*/
-
-@media (max-width: 767px) {
-  .table1 {
-      display: block;
-      width: 100%;
-  }
-  .stored-items:before{
-      content: "Scroll horizontally >";
-      display: block;
-      text-align: right;
-      font-size: 11px;
-      color: white;
-      padding: 0 0 10px;
-  }
-  .table1 thead, .table1 tbody, .table1 thead th {
-      display: block;
-  }
-  .table1 thead th:last-child{
-      border-bottom: none;
-  }
-  .table1 thead {
-      float: left;
-  }
-  .table1 tbody {
-      width: auto;
-      position: relative;
-      overflow-x: auto;
-  }
-  .table1 td, .table1 th {
-      padding: 20px .625em .625em .625em;
-      height: 60px;
-      vertical-align: middle;
-      box-sizing: border-box;
-      overflow-x: hidden;
-      overflow-y: auto;
-      width: 120px;
-      font-size: 13px;
-      text-overflow: ellipsis;
-  }
-  .table1 thead th {
-      text-align: left;
-      border-bottom: 1px solid #f7f7f9;
-  }
-  .table1 tbody tr {
-      display: table-cell;
-  }
-  .table1 tbody tr:nth-child(odd) {
-      background: none;
-  }
-  .table1 tr:nth-child(even) {
-      background: transparent;
-  }
-  .table1 tr td:nth-child(odd) {
-      background: #F8F8F8;
-      border-right: 1px solid #E6E4E4;
-  }
-  .table1 tr td:nth-child(even) {
-      border-right: 1px solid #E6E4E4;
-  }
-  .table1 tbody td {
-      display: block;
-      text-align: center;
-  }
-}
