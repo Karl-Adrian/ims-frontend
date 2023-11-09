@@ -1,0 +1,37 @@
+/*navbar */
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #003B77;
+  }
+  .nav {
+    color: #fff;
+  }
+  .nav-logo {
+  width: 150px;
+  height: auto;
+  }
+
+
+
+
+
+.remove-item {
+    background-color: #003c7755;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 500px;
+    padding: 20px;
+    width: 320px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 38%;
+  }
+  .remove-item mat-card-title {
+    font-size:35px;
+    margin-bottom: 30px;
+  }
+ 
+  

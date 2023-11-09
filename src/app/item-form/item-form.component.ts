@@ -15,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ItemFormComponent {
   // dataSource: MatTableDataSource<Item> = new MatTableDataSource<Item>();
-  displayedColumns: string[] = ['index','name', 'quantity', 'price'];
+  displayedColumns: string[] = ['index','name', 'quantity', 'price','actions'];
   itemForm: FormGroup;
   items: InventoryItem[] = [];
    httpOptions = {
@@ -82,7 +82,7 @@ editItems(item: InventoryItem) {
 
 
 deleteItems(itemId:number) {
-  this.http.delete<InventoryItem>(UrlEndpoints.endpointUrl.base+`${itemId}`,this.httpOptions).subscribe(value=>{this.getItems()
+  this.http.delete<InventoryItem>(UrlEndpoints.endpointUrl.base+`/${itemId}`,this.httpOptions).subscribe(value=>{this.getItems()
 });
 
 }

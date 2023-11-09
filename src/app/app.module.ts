@@ -16,9 +16,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { LandingComponent } from './landing/landing.component';
+import { RemoveItemComponent } from './remove-item/remove-item.component';
 const routes: Routes = [  
     {path: 'item-form', title: 'item form',component:ItemFormComponent},
-    {path: '', title: 'Home',component:LandingComponent}
+    {path: '', title: 'Home',component:LandingComponent},
+    {path: 'remove-item', title: 'remove item', component:RemoveItemComponent},
+
 //{path: '', redirectTo: '/item-form', pathMatch: 'full'},
 ]
 @NgModule({
@@ -27,7 +30,8 @@ const routes: Routes = [
     ItemListComponent,
     ItemFormComponent,
     ItemDetailComponent,
-    LandingComponent
+    LandingComponent,
+    RemoveItemComponent
   ],
   imports: [
     BrowserModule, 

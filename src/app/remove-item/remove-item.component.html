@@ -1,0 +1,58 @@
+<!-- Navbar -->
+<nav class="navbar">
+    <div>
+      <a href="item-form.component.html">
+        <img class="nav-logo" href="../landing/landing.component.html" src="../../assets/images/technovationlogo-01.png" alt="technovationke">
+      </a>
+    </div>
+  <!-- <ul class="nav">
+    <li>Home</li>
+  </ul> -->
+  </nav>
+  
+
+
+
+<!-- REMOVE ITEMS FORM -->
+<mat-card class="remove-item">
+    <mat-card-header>
+      <mat-card-title>Remove Item</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form class="item-form"[formGroup]="itemForm" >
+            <!-- NAME -->  
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label  for="itemName">Item Name:</mat-label>
+                <input matInput class="text" id="itemName" name="itemName" formControlName="itemName">
+              </mat-form-field>
+            </div>
+        
+            <!-- QUANTITY -->
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label for="itemQuantity">Quantity:</mat-label>
+                <input matInput type="number" id="itemQuantity" name="itemQuantity" formControlName="itemQuantity">
+                <mat-error *ngIf="itemForm.get('itemQuantity')?.hasError('required')">Quantity is required.</mat-error>
+                <mat-error *ngIf="itemForm.get('itemQuantity')?.hasError('min')">Quantity must be at least 1.</mat-error>
+                <mat-error *ngIf="itemForm.get('itemQuantity')?.hasError('max')">Quantity must not exceed 100.</mat-error>
+              </mat-form-field>
+            </div>
+          
+            <!-- PRICE -->
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label for="itemPrice">Price:</mat-label>
+                <input matInput type="number" id="itemPrice" name="itemPrice" formControlName="itemPrice">
+                <mat-error *ngIf="itemForm.get('itemPrice')?.hasError('required')">Price is required.</mat-error>
+                <mat-error *ngIf="itemForm.get('itemPrice')?.hasError('min')">Price must be at least 1.00.</mat-error>
+                <mat-error *ngIf="itemForm.get('itemPrice')?.hasError('max')">Price must not exceed 1000.</mat-error>
+              </mat-form-field>
+            </div>
+        
+            <!-- SUBMIT BUTTON -->
+            <button mat-raised-button color="accent" type="submit" (click)="addItem()"  [disabled]="!itemForm.valid">Remove Item</button>
+            <!-- <p>{{itemForm.valid}}</p> -->
+          </form>
+        </mat-card-content>
+  </mat-card>

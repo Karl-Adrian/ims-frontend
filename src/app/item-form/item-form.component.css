@@ -19,7 +19,7 @@ width: 150px;
 height: auto;
 }
 
-.add-item {
+/* .add-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,23 +29,26 @@ height: auto;
   border-radius: 6px;
   border-width: 11px;
   background: #003c7782;
+} */
+
+.add-item {
+  background-color: #003c7755;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 500px;
+  padding: 20px;
+  width: 320px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 38%;
 }
 .add-item mat-card-title {
   font-size:35px;
+  margin-bottom: 30px;
 }
 
 
 
-.remove-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  align-items: center;
-  height: 100vh; 
-  border: 55px solid black;
-  border-radius: 6px;
-  border-width: 11px;
-  background: #003c7782;
-}
 
 
