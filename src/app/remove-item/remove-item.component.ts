@@ -6,6 +6,8 @@ import { UrlEndpoints } from 'src/environments';
 import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { InventoryItem } from '../models/inventory-item';
 import { MatTableDataSource } from '@angular/material/table';
+ 
+
 
 @Component({
   selector: 'app-remove-item',
@@ -21,17 +23,17 @@ httpOptions = {
 edit: boolean = false;
 itemBeingEdited!: InventoryItem;
 
-constructor(private http: HttpClient, private fb: FormBuilder) {
+constructor(private http: HttpClient, private fb: FormBuilder, ) {
   this.itemForm = this.fb.group({
     itemName: ['', [Validators.required]],
     itemQuantity: [null, [Validators.required, Validators.min(1), Validators.max(999999)]],
     itemPrice: [null, [Validators.required, Validators.min(1.00), Validators.max(99999999)]]
   })
   this.getItems()
+  
  }
 
- addItem() {  
-  if (this.edit) {
+ removeItem() {  
     const newItem:InventoryItem = {
       name: this.itemForm.get("itemName")!.value,
       quantity: this.itemForm.get("itemQuantity")!.value,
@@ -43,22 +45,19 @@ constructor(private http: HttpClient, private fb: FormBuilder) {
       this.getItems();
       this.edit=false;
     });
-  }
 
     
-  else{
-    const newItem:InventoryItem = {
-      name: this.itemForm.get("itemName")!.value,
-      quantity: this.itemForm.get("itemQuantity")!.value,
-      id: 0,
-      price: this.itemForm.get("itemPrice")!.value
-    };
+    // const newItem:InventoryItem = {
+    //   name: this.itemForm.get("itemName")!.value,
+    //   quantity: this.itemForm.get("itemQuantity")!.value,
+    //   id: 0,
+    //   price: this.itemForm.get("itemPrice")!.value
+    // };
     
-    this.http.post<InventoryItem>(UrlEndpoints.endpointUrl.base,newItem, this.httpOptions).subscribe(value=>{
-      this.getItems();
-      this.edit=false;
-    });                
-  }
+    // this.http.post<InventoryItem>(UrlEndpoints.endpointUrl.base,newItem, this.httpOptions).subscribe(value=>{
+    //   this.getItems();
+    //   this.edit=false;
+    // });                
 }
 
 getItems() {
@@ -83,6 +82,8 @@ deleteItems(itemId:number) {
 });
 
 }
+
+
 
 
 getErrorMessage(){

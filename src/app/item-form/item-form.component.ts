@@ -44,6 +44,7 @@ export class ItemFormComponent {
         
         this.http.put<InventoryItem>(UrlEndpoints.endpointUrl.base,newItem, this.httpOptions).subscribe(value=>{
           this.getItems();
+          this.itemForm.reset();
           this.edit=false;
         });
       }
@@ -58,6 +59,7 @@ export class ItemFormComponent {
         
         this.http.post<InventoryItem>(UrlEndpoints.endpointUrl.base,newItem, this.httpOptions).subscribe(value=>{
           this.getItems();
+          this.itemForm.reset();
           this.edit=false;
         });                
       }
@@ -86,6 +88,8 @@ deleteItems(itemId:number) {
 });
 
 }
+
+
 
 
 getErrorMessage(){
