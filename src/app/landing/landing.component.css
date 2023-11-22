@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Roboto:ital,wght@1,300&family=Tilt+Neon&display=swap');
+
+* {
+  font-family: "Monsterrat", sans-serif;
+}
+
+/*navbar */
+.navbar {
+  margin: 0;
+  padding: 0;
+  background-color: #003B77;
+}
+.nav {
+  color: #fff;
+}
+.nav-logo {
+width: 150px;
+height: auto;
+}
+
+.landing {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.landing h1 {
+  font-size: 40px;
+}
+
+.mat-accent {
+  background-color:#003B77;
+  color: #fff;
+}
+
+.buttons {
+  text-align: center;
+}
+
+.stored-items h2 {
+  text-align: center;
+  
+}

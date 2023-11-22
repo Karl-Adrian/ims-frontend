@@ -1,7 +1,64 @@
+<!-- Navbar -->
+<nav class="navbar">
+    <div>
+      <a routerLink="#">
+        <img class="nav-logo" src="../../assets/images/technovationlogo-01.png" alt="Technovation Logo">
+      </a>
+    </div>
+  <!-- <ul class="nav">
+    <li>Home</li>
+  </ul> -->
+  </nav>
+  
+
 <div class="landing">
     <h1>TECHNOVATION IMS</h1>
 </div>
-<div>
-    <a routerLink="/item-form" class="btn">Add Item</a>
-    <a routerLink="/remove-item" class="btn">Remove Item</a>
+<div class="buttons">
+    <a mat-raised-button color="primary" routerLink="/item-form" class="btn">Add Item</a>
+    <br>
+    <br>
+    <!-- <a mat-raised-button  color="primary" routerLink="/remove-item" class="btn">Remove Item</a> -->
 </div>
+
+
+ <!-- Stored Items Table -->
+ <div class="stored-items">
+  <h2>Stored Items</h2>
+  <table mat-table [dataSource]="items" class="table1" >
+    <!-- Position Column -->
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+      </ng-container>
+
+    <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+      </ng-container>
+
+    <!-- Quantity column -->
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef> Quantity</th>
+      <td mat-cell *matCellDef="let item"> {{item.quantity}} </td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let item"> {{item.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let item"> 
+      <button (click)="sendData(item.id)" >Remove</button>
+      <button (click)="editItems(item)" >Edit</button></td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>
+<!-- deleteItems(item.id) -->

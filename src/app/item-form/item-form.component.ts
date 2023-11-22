@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { UrlEndpoints } from 'src/environments';
 import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { InventoryItem } from '../models/inventory-item';
-import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,6 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./item-form.component.css']
 })
 export class ItemFormComponent {
+  
   // dataSource: MatTableDataSource<Item> = new MatTableDataSource<Item>();
   displayedColumns: string[] = ['index','name', 'quantity', 'price','actions'];
   itemForm: FormGroup;
@@ -23,7 +24,9 @@ export class ItemFormComponent {
   edit: boolean=false;
   itemBeingEdited!: InventoryItem;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {
+    console.log("Constructor");
+    
     this.itemForm = this.fb.group({
       itemName: ['', [Validators.required]],
       itemQuantity: [null, [Validators.required, Validators.min(1), Validators.max(999999)]],
@@ -32,8 +35,10 @@ export class ItemFormComponent {
     this.getItems()
    }
 
-
+// Add Item
  addItem() {  
+  console.log("addItem");
+
       if (this.edit) {
         const newItem:InventoryItem = {
           name: this.itemForm.get("itemName")!.value,
@@ -43,8 +48,9 @@ export class ItemFormComponent {
         };
         
         this.http.put<InventoryItem>(UrlEndpoints.endpointUrl.base,newItem, this.httpOptions).subscribe(value=>{
-          this.getItems();
+          // this.getItems();
           this.itemForm.reset();
+          this.router.navigate(['/landing'])
           this.edit=false;
         });
       }
@@ -65,14 +71,19 @@ export class ItemFormComponent {
       }
   }
 
+  // Get Items
 getItems() {
+  console.log("getItems");
   this.http.get<InventoryItem[]>(UrlEndpoints.endpointUrl.base,this.httpOptions).subscribe(value=>{this.items=value 
 });
   
 
 }
 
+// Edit Items
 editItems(item: InventoryItem) {
+  console.log("editItems");
+  
   this.itemBeingEdited=item
   this.edit=true;
   this.itemForm.patchValue({
@@ -81,16 +92,12 @@ editItems(item: InventoryItem) {
   itemPrice:item.price
   });
 }
-
-
+// Delete Items
 deleteItems(itemId:number) {
   this.http.delete<InventoryItem>(UrlEndpoints.endpointUrl.base+`/${itemId}`,this.httpOptions).subscribe(value=>{this.getItems()
 });
 
 }
-
-
-
 
 getErrorMessage(){
   

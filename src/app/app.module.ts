@@ -22,6 +22,7 @@ const routes: Routes = [
     {path: '', title: 'Home',component:LandingComponent},
     {path: 'remove-item', title: 'remove item', component:RemoveItemComponent},
     {path: '**', redirectTo: ''},
+    {path: 'landing', title: 'landing', component:LandingComponent},
 //{path: '', redirectTo: '/item-form', pathMatch: 'full'},
 ]
 @NgModule({
